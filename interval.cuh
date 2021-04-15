@@ -77,11 +77,8 @@ struct Interval {
 //////////
 
 
-// __device__ inline Interval operator+(const Interval& f, const Interval& g) {
-//     return Interval(__op_rd(add)(f.lo(), g.lo()), __op_ru(add)(f.hi(), g.hi()));
-// }
 __device__ inline Interval operator+(const Interval& f, const Interval& g) {
-    return Interval(__fadd_rd(f.lo(), g.lo()), __fadd_ru(f.hi(), g.hi()));
+    return Interval(__op_rd(add)(f.lo(), g.lo()), __op_ru(add)(f.hi(), g.hi()));
 }
 __device__ inline Interval operator+(const Interval& f, const T& g) {
     return Interval(__op_rd(add)(f.lo(), g), __op_ru(add)(f.hi(), g));
